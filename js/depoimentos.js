@@ -77,14 +77,32 @@ conteudo.append(setaEsquerda);
 conteudo.append(conteiner);
 conteudo.append(setaDireita);
 
-
-
-
 const main = document.querySelector('main');
 
 main.lastElementChild.before(secao)
 
 
-function slideNext(slide) {
+setaDireita.addEventListener('click', evento => {
+    slide = proximoSlide(slide)
+    console.log(slide)
+    texto.textContent = depoimentos[slide].texto
+    autor.textContent = depoimentos[slide].autor
+})
+
+setaEsquerda.addEventListener('click', evento => {
+    slide = slideAnterior(slide)
+    console.log(slide)
+    texto.textContent = depoimentos[slide].texto
+    autor.textContent = depoimentos[slide].autor
+})
+
+
+function proximoSlide(slide) {
     slide = (slide + 1) % depoimentos.length
+    return slide
+}
+
+function slideAnterior(slide) {
+    slide = (slide - 1 + depoimentos.length) % depoimentos.length
+    return slide
 }
